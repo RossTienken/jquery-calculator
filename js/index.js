@@ -1,6 +1,5 @@
 $(document).ready(function () {
   $('.buttons > span').click(function() {
-    console.log("click");
     $('#screen').append($(this).text())
   });
 
@@ -27,11 +26,9 @@ function checkEquation(equation) {
 function calculate(){
   let equation = $('#screen').text();
   equation = checkEquation(equation)
-
   equation = equation.replace('÷', '/')
-  equation = equation.replace('X', '*')
+  equation = equation.replace('x', '*')
   equation = equation.replace('=', '')
-
   if(equation !== 'error'){
     equation = eval(equation)
   }
