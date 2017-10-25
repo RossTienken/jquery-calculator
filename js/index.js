@@ -12,7 +12,7 @@ $(document).ready(function () {
   });
 
   $('#equals').click(function() {
-    calculate()
+    $('#screen').text(calculate($('#screen').text()))
   });
 });
 
@@ -23,17 +23,21 @@ function checkEquation(equation) {
     return equation
   }
 }
-function calculate(){
-  let equation = $('#screen').text();
+function calculate(x){
+  let equation = x;
   equation = checkEquation(equation)
   equation = equation.replace('÷', '/')
   equation = equation.replace('x', '*')
   equation = equation.replace('=', '')
-  if(equation !== 'error'){
+  var tooMany = equation.match(/([+]|[-]|[/]|[*])([+]|[-]|[/]|[*]|[÷]|[x])/)
+  if(tooMany !== null){
+    equation = 'Error'
+  }
+  if(equation !== 'Error'){
     equation = eval(equation)
   }
   if(equation === Infinity){
     equation = 'Error'
   }
-  $('#screen').text(equation)
+  return equation
 }
