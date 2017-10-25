@@ -17,7 +17,7 @@ $(document).ready(function () {
 });
 
 function checkEquation(equation) {
-  if (isNaN(equation[0]) || isNaN(equation[equation.length - 2])) {
+  if (isNaN(equation[equation.length - 2])) {
     return "Error"
   } else {
     return equation
@@ -29,7 +29,7 @@ function calculate(x){
   equation = equation.replace('÷', '/')
   equation = equation.replace('x', '*')
   equation = equation.replace('=', '')
-  var tooMany = equation.match(/([+]|[-]|[/]|[*])([+]|[-]|[/]|[*]|[÷]|[x])/)
+  var tooMany = equation.match(/([+]|[-]|[/]|[*])([+]|[/]|[*]|[÷]|[x])/)
   if(tooMany !== null){
     equation = 'Error'
   }
